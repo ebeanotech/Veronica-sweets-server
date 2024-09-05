@@ -35,11 +35,15 @@ app.get("/", (req, res) => {
 // Routers
 const userRouter = require("./routes/users");
 const foodRouter = require("./routes/foods");
+
+const drinkRouter = require("./routes/drinks");
 const notFound = require("./middleware/not-found");
 
 // Routes
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/foods", foodRouter);
+
+app.use("/api/v1/drinks", drinkRouter);
 
 // Multer setup for file upload
 const storage = multer.diskStorage({
