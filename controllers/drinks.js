@@ -44,7 +44,16 @@ const updateDrink = async (req, res) => {
 };
 
 const deleteDrink = async (req, res) => {
-  res.send("delete Food");
+  const { id } = req.params;
+  const drink = await Drink.find({ _id: id });
+
+  if (!drink) {
+    return res.send("No food matches id");
+  }
+
+  await Drink.deleteOne({ _id: id });
+
+  res.status(StatusCodes.OK).json({ msg: "Item deleted", drink });
 };
 
 module.exports = {
