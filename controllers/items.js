@@ -18,9 +18,9 @@ const getItem = async (req, res) => {
 };
 
 const createItem = async (req, res) => {
-  const { title, price, description, images } = req.body;
+  const { title, price, description, images, category } = req.body;
 
-  if (!title || !price || !images) {
+  if (!title || !price || !images || !category) {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ msg: "Please fill all fields", success: false });
@@ -28,12 +28,10 @@ const createItem = async (req, res) => {
 
   const item = await Item.create({
     title,
-
     price,
-
     description,
-
     images,
+    category,
   });
 
   res.status(StatusCodes.CREATED).json({ item });
