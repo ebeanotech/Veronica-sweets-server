@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const FoodSchema = new mongoose.Schema(
+const ItemSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -12,7 +12,6 @@ const FoodSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, "Please provide a description"],
       maxlength: [1000, "Description cannot be more than 1000 characters"],
     },
     images: {
@@ -25,12 +24,12 @@ const FoodSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      default: "food",
+      enum: ["food", "drink"],
     },
   },
   { timestamps: true }
 );
 
-const Food = mongoose.model("Food", FoodSchema);
+const Item = mongoose.model("Item", ItemSchema);
 
-module.exports = Food;
+module.exports = Item;
